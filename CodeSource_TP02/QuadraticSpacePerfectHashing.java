@@ -62,6 +62,16 @@ public class QuadraticSpacePerfectHashing<AnyType>
 		int hc = x.hashCode();
 		int length = items.length;
 		int key = ((a*hc+b)%p)%length;
+		
+		if(containsKey(key) && length >1) {
+			int key2 = (x.hashCode() / length) + 1;
+			while(containsKey(key)) {
+				//key += key2;
+				key += 1;
+				key = key%length;
+			}
+		}
+		
 		return key;
 		
 	}
@@ -88,8 +98,10 @@ public class QuadraticSpacePerfectHashing<AnyType>
 		
 		// A completer
 		a = generator.nextInt(p);
-		while(a == 0)
+		while(a == 0) 
+		{
 			a = generator.nextInt(p);
+		}
 		
 		b = generator.nextInt(p);
 		
@@ -99,8 +111,9 @@ public class QuadraticSpacePerfectHashing<AnyType>
 		{
 			int key = getKey(array.get(i));
 			
-			items[key]= array.get(i);
 			
+
+			items[key]= array.get(i);
 		}
 	}
 

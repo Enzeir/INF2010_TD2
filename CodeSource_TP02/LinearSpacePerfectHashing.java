@@ -59,7 +59,6 @@ public class LinearSpacePerfectHashing<AnyType>
 			
 			if(containsKey(key)) 
 			{
-				
 				for( AnyType item : data[key].items)
 				{
 					if(item != null) 
@@ -71,7 +70,6 @@ public class LinearSpacePerfectHashing<AnyType>
 			
 			al.add(array.get(i));
 			data[key] = new QuadraticSpacePerfectHashing<AnyType>(al);
-			
 		}
 	}
 
@@ -119,12 +117,15 @@ public class LinearSpacePerfectHashing<AnyType>
 		String result = "";
 		
 		// A completer
-		for(int i = 0; i<data.length; i++) {
-			if(containsKey(i)) {
+		for(int i = 0; i < data.length; i++) 
+		{
+			if(data[i] != null) 
+			{
 				result += "[" + i  + "] -> " + data[i].toString() + "\n";
-
 			}
-
+			else {
+				result += "[" + i  + "] -> \n";
+			}
 		}
 		
 		return result; 

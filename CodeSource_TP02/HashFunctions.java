@@ -94,11 +94,13 @@ public class HashFunctions
       // Effectues quelques tests aleatoires pour verifier les proprietes de taille
       pfhash = new LinearSpacePerfectHashing<Integer>();
             
-      for(int i=0, nbElements = 10; i<40; ++i, nbElements += 10)
+      for(int i=0, nbElements = 10; i<5; ++i, nbElements += 10)
       {
          pfhash.SetArray( randomIntegers( nbElements ) );
          System.out.println( nbElements + "\t" + pfhash.Size() );
       }
+      System.out.println(pfhash);
+
    }
    
    /**
@@ -106,7 +108,17 @@ public class HashFunctions
     */
    public static ArrayList<Integer> randomIntegers(int length)
    {
-      return null;
+	   
+	  Random generator = new Random( System.nanoTime() );
+	  ArrayList<Integer> result = new ArrayList<Integer>();
+	  for(int i = 0;i < length; i++) {
+		  int value = generator.nextInt(p);
+		  while(result.contains(value)) {
+			  value = generator.nextInt(p);
+		  }
+		  result.add(value);
+	  }
+      return result;
    }
 }
 
